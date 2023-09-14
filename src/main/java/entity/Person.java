@@ -16,9 +16,15 @@ import java.time.LocalDate;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
     String firstName;
     String lastName;
     @Temporal(TemporalType.DATE)
     LocalDate date;
+
+    public Person(String firstName, String lastName, LocalDate date) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.date = date;
+    }
 }
