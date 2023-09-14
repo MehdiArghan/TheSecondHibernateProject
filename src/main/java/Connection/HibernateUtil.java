@@ -12,7 +12,7 @@ public class HibernateUtil {
     public static final Metadata METADATA = new MetadataSources(STANDARD_SERVICE_REGISTRY).getMetadataBuilder().build();
     public static final SessionFactory SESSION_FACTORY = METADATA.getSessionFactoryBuilder().build();
 
-    public SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory() {
         return SESSION_FACTORY;
     }
 }
