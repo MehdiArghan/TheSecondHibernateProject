@@ -1,6 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,8 +18,11 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NotNull(message = "firstName is null")
     String firstName;
+    @NotNull(message = "lastName is null")
     String lastName;
+    @NotNull(message = "Date is null")
     @Temporal(TemporalType.DATE)
     LocalDate birthDate;
 

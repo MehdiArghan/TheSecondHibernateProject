@@ -12,6 +12,7 @@ public class Main {
         //personRepository.save(person);
         // personRepository.updateById(new Person("erfan", "navab", LocalDate.of(1998, 11, 30)), 1L);
         // personRepository.deleteById(1L);
-        personRepository.loadAll().forEach(System.out::println);
+        //personRepository.loadAll().forEach(System.out::println);
+        System.out.println(personRepository.contains(person));
     }
 }

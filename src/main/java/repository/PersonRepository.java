@@ -56,7 +56,11 @@ public class PersonRepository {
         }
     }
 
-    public List<Person> loadAll(){
-        return session.createQuery("from Person ",Person.class).getResultList();
+    public List<Person> loadAll() {
+        return session.createQuery("from Person ", Person.class).getResultList();
+    }
+
+    public boolean contains(Person person) {
+        return session.contains(person);
     }
 }
