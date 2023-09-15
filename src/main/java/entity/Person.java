@@ -20,11 +20,11 @@ public class Person {
     String firstName;
     String lastName;
     @Temporal(TemporalType.DATE)
-    LocalDate date;
+    LocalDate birthDate;
 
-    public Person(String firstName, String lastName, LocalDate date) {
+    public Person(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.date = date;
+        this.birthDate = birthDate;
     }
 }
