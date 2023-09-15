@@ -11,18 +11,18 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
+@ToString
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @NotNull(message = "firstName is null")
+    @NotNull(message = "The firstName must have a value")
     String firstName;
-    @NotNull(message = "lastName is null")
+    @NotNull(message = "The lastName must have a value")
     String lastName;
-    @NotNull(message = "Date is null")
+    @NotNull(message = "The Date must have a value")
     @Temporal(TemporalType.DATE)
     LocalDate birthDate;
 

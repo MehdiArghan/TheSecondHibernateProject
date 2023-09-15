@@ -4,7 +4,6 @@ import Connection.HibernateUtil;
 import entity.Person;
 import org.hibernate.Session;
 import org.hibernate.TransactionException;
-import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -23,13 +22,10 @@ public class PersonRepository {
         }
     }
 
-    public void deleteById(Long ID) {
+    public void delete(Person person) {
         try {
             session.getTransaction().begin();
-            Query query = session.createQuery(
-                    "delete from Person e where e.id=: ID");
-            query.setParameter("ID", ID);
-            query.executeUpdate();
+            session.remove(person);
             session.getTransaction().commit();
         } catch (TransactionException e) {
             session.getTransaction().rollback();
@@ -37,18 +33,10 @@ public class PersonRepository {
         }
     }
 
-    public void updateById(Person person, Long id) {
+    public void update(Person person) {
         try {
             session.getTransaction().begin();
-            Query query =
-                    session.createQuery(
-                            "UPDATE Person set firstName=:firstName,lastName=:lastName," +
-                                    "birthDate=:birthDate where id=:id");
-            query.setParameter("firstName", person.getFirstName());
-            query.setParameter("lastName", person.getLastName());
-            query.setParameter("birthDate", person.getBirthDate());
-            query.setParameter("id", id);
-            query.executeUpdate();
+            session.merge(person);
             session.getTransaction().commit();
         } catch (TransactionException e) {
             session.getTransaction().rollback();
