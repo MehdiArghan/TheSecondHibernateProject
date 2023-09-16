@@ -12,6 +12,6 @@ public class Main {
         //personRepository.save(person);
         //personRepository.update(new Person("erfan", "navab", LocalDate.of(1998, 11, 30)), 1L);
         //personRepository.delete(person);
-        personRepository.loadAll().forEach(System.out::println);
+        //personRepository.loadAll().forEach(System.out::println);
     }
 }
