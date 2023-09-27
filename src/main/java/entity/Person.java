@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @ToString
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,7 @@
 package service;
 
 import entity.Person;
+import exception.CustomException;
 import repository.PersonRepository;
 import util.PersonValidator;
 
@@ -18,9 +19,8 @@ public class PersonService {
             Person person = new Person(firstName, lastName, birthdate);
             personRepository.save(person);
             return person;
-        }catch (Exception e){
-           // e.getMessage();
+        } catch (Exception e) {
+            throw new CustomException(e.getMessage());
         }
-        return new Person();
     }
 }

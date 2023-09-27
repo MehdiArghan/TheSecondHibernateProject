@@ -1,5 +1,6 @@
 package util;
 
+import exception.CustomException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -16,7 +17,7 @@ public class PersonValidator {
         if (!violations.isEmpty()) {
             for (ConstraintViolation<T> violation : violations) {
                 System.out.println("validation eror");
-                //  throw new Exception(violation.getMessage());
+                throw new CustomException(violation.getMessage());
             }
         }
         return true;
