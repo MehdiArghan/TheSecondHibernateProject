@@ -1,5 +1,6 @@
 package entity;
 
+import base.entity.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -16,10 +17,7 @@ import java.time.LocalDate;
 @Entity
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+public class Person extends BaseEntity<Long> {
     @NotNull(message = "The firstName must have a value")
     @Size(min = 2, max = 10, message = "Invalid firstName, Size should be between 2 to 10")
     String firstName;
@@ -28,10 +26,4 @@ public class Person {
     @NotNull(message = "Invalid Date. Please enter your Date")
     @Temporal(TemporalType.DATE)
     LocalDate birthDate;
-
-    public Person(String firstName, String lastName, LocalDate birthDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-    }
 }
