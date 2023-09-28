@@ -2,7 +2,7 @@ package service;
 
 import entity.Teacher;
 import exception.CustomException;
-import repository.PersonRepository;
+import view.PersonRepository;
 import util.PersonValidator;
 
 public class TeacherService {

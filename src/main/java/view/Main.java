@@ -1,11 +1,6 @@
-package main;
+package view;
 
 import entity.Person;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
-import repository.PersonRepository;
-import service.PersonService;
 import util.PersonValidator;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
-package repository;
+package view;
 
-import Connection.HibernateUtil;
+import base.repository.util.HibernateUtil;
 import entity.Person;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;

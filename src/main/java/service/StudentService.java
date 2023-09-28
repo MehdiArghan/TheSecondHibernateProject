@@ -1,9 +1,8 @@
 package service;
 
-import entity.Person;
 import entity.Student;
 import exception.CustomException;
-import repository.PersonRepository;
+import view.PersonRepository;
 import util.PersonValidator;
 
 public class StudentService {

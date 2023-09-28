@@ -2,7 +2,7 @@ package service;
 
 import entity.Person;
 import exception.CustomException;
-import repository.PersonRepository;
+import view.PersonRepository;
 import util.PersonValidator;
 
 
