@@ -1,9 +1,9 @@
 package base.service.impl;
 
-
 import base.entity.BaseEntity;
 import base.repository.BaseRepository;
 import base.service.BaseService;
+import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.TransactionException;
 
@@ -11,15 +11,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 public class BaseServiceImpl<ID extends Serializable, Entity extends BaseEntity<ID>
         , REPOSITORY extends BaseRepository<ID, Entity>> implements BaseService<ID, Entity> {
     protected final Session session;
     protected final REPOSITORY repository;
-
-    public BaseServiceImpl(Session session, REPOSITORY repository) {
-        this.session = session;
-        this.repository = repository;
-    }
 
     @Override
     public void save(Entity entity) {
@@ -61,9 +57,6 @@ public class BaseServiceImpl<ID extends Serializable, Entity extends BaseEntity<
 
     @Override
     public List<Entity> loadAll() {
-        session.getTransaction().begin();
-        List<Entity> entities = repository.loadAll();
-        session.getTransaction().commit();
-        return entities;
+        return repository.loadAll();
     }
 }

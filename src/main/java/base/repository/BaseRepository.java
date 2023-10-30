@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public interface BaseRepository <ID extends Serializable, Entity extends BaseEntity<ID>>{
+public interface BaseRepository<ID extends Serializable, Entity extends BaseEntity<ID>> {
     void save(Entity entity);
 
     void update(Entity entity);
