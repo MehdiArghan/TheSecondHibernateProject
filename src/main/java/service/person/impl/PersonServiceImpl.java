@@ -23,9 +23,14 @@ public class PersonServiceImpl extends BaseServiceImpl<Long, Person, PersonRepos
     public Person singUp(String firstName, String lastName, LocalDate birthdate) {
         try {
             Person person = new Person(firstName, lastName, birthdate);
-            if (!checkValidation.isValid(person)) throw new CustomException("Error Validation Person");
-            repository.save(person);
-            return person;
+            if (!checkValidation.isValid(person)) {
+                throw new CustomException("Error Validation Person");
+            } else {
+                session.getTransaction().begin();
+                repository.save(person);
+                session.getTransaction().commit();
+                return person;
+            }
         } catch (Exception e) {
             throw new CustomException(e.getMessage());
         }

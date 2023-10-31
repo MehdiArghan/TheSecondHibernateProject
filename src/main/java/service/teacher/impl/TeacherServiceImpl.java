@@ -9,6 +9,8 @@ import repository.teacher.TeacherRepository;
 import service.teacher.TeacherService;
 import util.checkValidation;
 
+import java.time.LocalDate;
+
 public class TeacherServiceImpl extends BaseServiceImpl<Long, Teacher, TeacherRepository> implements TeacherService {
     protected final Session session;
 
@@ -17,15 +19,25 @@ public class TeacherServiceImpl extends BaseServiceImpl<Long, Teacher, TeacherRe
         this.session = session;
     }
 
+
     @Override
-    public Teacher signUp(String teacherId, String degreeOfEducation, TeacherEnum teacherEnum, Double salary) {
+    public Teacher signUp(String firstname, String lastname, LocalDate date, String teacherId, String degreeOfEducation, TeacherEnum teacherEnum, Double salary) {
         try {
-            Teacher teacher = new Teacher(teacherId, degreeOfEducation, teacherEnum, salary);
-            if (!checkValidation.isValid(teacher)) throw new CustomException("Error Validation teacher");
-            repository.save(teacher);
-            return teacher;
+            Teacher teacher = new Teacher(firstname, lastname, date, teacherId, degreeOfEducation, teacherEnum, salary);
+            if (!checkValidation.isValid(teacher)) {
+                throw new CustomException("Error Validation teacher");
+            } else {
+                addTeacher(teacher);
+                return teacher;
+            }
         } catch (Exception e) {
             throw new CustomException(e.getMessage());
         }
+    }
+
+    private void addTeacher(Teacher teacher) {
+        session.getTransaction().begin();
+        repository.save(teacher);
+        session.getTransaction().commit();
     }
 }

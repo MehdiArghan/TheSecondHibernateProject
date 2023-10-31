@@ -40,6 +40,6 @@ public abstract class BaseRepositoryImpl<ID extends Serializable, Entity extends
 
     @Override
     public List<Entity> loadAll() {
-        return session.createQuery("from" + getEntityClass().getSimpleName(), getEntityClass()).getResultList();
+        return session.createQuery("from " + getEntityClass().getSimpleName(), getEntityClass()).getResultList();
     }
 }
