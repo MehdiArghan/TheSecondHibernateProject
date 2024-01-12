@@ -21,23 +21,21 @@ public class TeacherServiceImpl extends BaseServiceImpl<Long, Teacher, TeacherRe
 
 
     @Override
-    public Teacher signUp(String firstname, String lastname, LocalDate date, String teacherId, String degreeOfEducation, TeacherEnum teacherEnum, Double salary) {
+    public Teacher signUp(String firstname, String lastname, LocalDate date, String teacherId, String degreeOfEducation
+            , TeacherEnum teacherEnum, Double salary) {
         try {
-            Teacher teacher = new Teacher(firstname, lastname, date, teacherId, degreeOfEducation, teacherEnum, salary);
+            Teacher teacher = new Teacher(firstname, lastname, date, teacherId, degreeOfEducation
+                    , teacherEnum, salary);
             if (!checkValidation.isValid(teacher)) {
                 throw new CustomException("Error Validation teacher");
             } else {
-                addTeacher(teacher);
+                session.getTransaction().begin();
+                repository.save(teacher);
+                session.getTransaction().commit();
                 return teacher;
             }
         } catch (Exception e) {
             throw new CustomException(e.getMessage());
         }
-    }
-
-    private void addTeacher(Teacher teacher) {
-        session.getTransaction().begin();
-        repository.save(teacher);
-        session.getTransaction().commit();
     }
 }

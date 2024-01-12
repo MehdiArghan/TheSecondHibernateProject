@@ -26,28 +26,32 @@ public class Main {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        TeacherRepository teacherRepository = new TeacherRepositoryImpl(session);
+        TeacherService teacherService = new TeacherServiceImpl(session, teacherRepository);
+
+        StudentRepository studentRepository = new StudentRepositoryImpl(session);
+        StudentService studentService = new StudentServiceImpl(session, studentRepository);
+
+        PersonRepository personRepository = new PersonRepositoryImpl(session);
+        PersonService personService = new PersonServiceImpl(session, personRepository);
+
+
+
         Teacher teacher = new Teacher("mehdi", "arghan", LocalDate.now(),
                 "147", "master", TeacherEnum.THERE, 2005.2);
 
-        TeacherRepository teacherRepository = new TeacherRepositoryImpl(session);
-        TeacherService teacherService = new TeacherServiceImpl(session, teacherRepository);
         teacherService.signUp(teacher.getFirstName(), teacher.getLastName(), teacher.getBirthDate()
                 , teacher.getTeacherId(), teacher.getDegreeOfEducation(), teacher.getTeacherEnum(), teacher.getSalary());
 
 
-        Student student = new Student("mohammad", "sedghi", LocalDate.now(), "36", "computer", "1392");
-
-        StudentRepository studentRepository = new StudentRepositoryImpl(session);
-        StudentService studentService = new StudentServiceImpl(session, studentRepository);
+        Student student = new Student("mohammad", "sedghi", LocalDate.now(), "36"
+                , "computer", "1392");
         studentService.signUp(student.getFirstName(), student.getLastName(), student.getBirthDate()
                 , student.getStudentID(), student.getFieldOfStudy(), student.getEnteringYear());
 
 
-        PersonRepository personRepository = new PersonRepositoryImpl(session);
-        PersonService personService = new PersonServiceImpl(session, personRepository);
+
         personService.singUp("erfan", "navab", LocalDate.now());
-
-
         List<Person> list=personService.loadAll();
         for (Person p:list) {
             System.out.println(p);

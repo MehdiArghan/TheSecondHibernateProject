@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@ToString
 @DiscriminatorValue(value = "student")
 public class Student extends Person {
     @NotNull(message = "The StudentId must have a value")
@@ -28,5 +27,14 @@ public class Student extends Person {
         this.StudentID = studentID;
         this.FieldOfStudy = fieldOfStudy;
         this.enteringYear = enteringYear;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "StudentID='" + StudentID + '\'' +
+                ", FieldOfStudy='" + FieldOfStudy + '\'' +
+                ", enteringYear='" + enteringYear + '\'' +
+                "} " + super.toString();
     }
 }
